@@ -7,7 +7,8 @@ const GlowCard = ({
   className = '',
   hoverable = true,
   glowEffect = false,
-  variant = 'default'
+  variant = 'default',
+  onClick = null
 }) => {
   const baseVariants = {
     hidden: { opacity: 0, y: 20, scale: 0.95 },
@@ -41,11 +42,13 @@ const GlowCard = ({
       animate="visible"
       whileHover={hoverVariants}
       variants={baseVariants}
+      onClick={onClick}
       className={`
         ${cardClasses[variant]} 
         ${glowEffect ? 'glow-effect' : ''} 
         ${className}
         relative overflow-hidden
+        ${onClick ? 'cursor-pointer' : ''}
       `}
     >
       {glowEffect && (
@@ -70,7 +73,8 @@ GlowCard.propTypes = {
   className: PropTypes.string,
   hoverable: PropTypes.bool,
   glowEffect: PropTypes.bool,
-  variant: PropTypes.oneOf(['default', 'hover', 'gradient', 'neon'])
+  variant: PropTypes.oneOf(['default', 'hover', 'gradient', 'neon']),
+  onClick: PropTypes.func
 };
 
 export default GlowCard;

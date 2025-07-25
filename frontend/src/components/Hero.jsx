@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 import { Brain, TrendingUp, MessageSquare, ArrowRight } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
 import GlowCard from './GlowCard';
+import PropTypes from 'prop-types';
 
-const Hero = () => {
+const Hero = ({ onNavigate }) => {
   const [currentText, setCurrentText] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
 
@@ -56,21 +57,24 @@ const Hero = () => {
       title: "持仓诊断",
       description: "AI分析持仓健康度，发现潜在问题",
       color: "from-primary from-opacity-20 to-primary to-opacity-5",
-      delay: 0.1
+      delay: 0.1,
+      page: "portfolio-diagnosis"
     },
     {
       icon: TrendingUp,
       title: "仓位管理", 
       description: "智能提示加仓减仓时机，优化配置",
       color: "from-secondary from-opacity-20 to-secondary to-opacity-5",
-      delay: 0.2
+      delay: 0.2,
+      page: "position-management"
     },
     {
       icon: MessageSquare,
       title: "风险预警",
       description: "实时监控风险，提前预警潜在损失",
       color: "from-success from-opacity-20 to-success to-opacity-5",
-      delay: 0.3
+      delay: 0.3,
+      page: "risk-alert"
     }
   ];
 
@@ -131,6 +135,7 @@ const Hero = () => {
         <motion.div variants={itemVariants} className="mb-16">
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <motion.button
+              onClick={() => onNavigate('portfolio-diagnosis')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="primary-button flex items-center gap-3 text-lg px-10 py-5"
@@ -140,6 +145,7 @@ const Hero = () => {
             </motion.button>
             
             <motion.button
+              onClick={() => onNavigate('position-management')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="secondary-button flex items-center gap-3 text-lg px-10 py-5"
@@ -161,6 +167,7 @@ const Hero = () => {
                 hoverable={true}
                 glowEffect={true}
                 className="p-8 text-center group cursor-pointer"
+                onClick={() => onNavigate(feature.page)}
               >
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
@@ -258,6 +265,10 @@ const Hero = () => {
       </div>
     </section>
   );
+};
+
+Hero.propTypes = {
+  onNavigate: PropTypes.func.isRequired
 };
 
 export default Hero;

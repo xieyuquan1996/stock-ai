@@ -13,7 +13,7 @@ function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Hero />;
+        return <Hero onNavigate={setCurrentPage} />;
       case 'portfolio-diagnosis':
         return <PortfolioInput />;
       case 'position-management':
@@ -23,7 +23,7 @@ function App() {
       case 'ai-advisor':
         return <AIChat />;
       default:
-        return <Hero />;
+        return <Hero onNavigate={setCurrentPage} />;
     }
   };
 
