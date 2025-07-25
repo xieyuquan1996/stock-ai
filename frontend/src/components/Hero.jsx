@@ -120,13 +120,6 @@ const Hero = ({ onNavigate }) => {
               className="text-2xl md:text-4xl font-light text-textSecondary"
             >
               {heroTexts[currentText]}
-              <motion.span
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 1, repeat: Infinity }}
-                className="ml-1 text-primary"
-              >
-                |
-              </motion.span>
             </motion.h2>
           </div>
         </motion.div>
